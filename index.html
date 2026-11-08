@@ -35,7 +35,6 @@
       position: relative;
     }
 
-    /* Fixed background canvas that NEVER intercepts clicks */
     canvas#fireworks {
       position: fixed;
       top: 0;
@@ -56,7 +55,6 @@
       gap: 22px;
     }
 
-    /* Classical Header Section */
     .header-card {
       background: var(--card-bg);
       border: 2px solid var(--gold-dark);
@@ -123,7 +121,19 @@
       margin: 0 auto;
     }
 
-    /* Tab Switcher Bar */
+    .sound-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #ffd875;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(249, 211, 66, 0.3);
+    }
+
     .tab-bar {
       display: flex;
       justify-content: center;
@@ -151,7 +161,6 @@
       transform: translateY(-2px);
     }
 
-    /* Game Container Cards */
     .game-section {
       background: var(--card-bg);
       border: 2px solid var(--gold-dark);
@@ -180,7 +189,6 @@
       margin-bottom: 18px;
     }
 
-    /* Activity 1: Diyas */
     .diyas-rack {
       display: flex;
       justify-content: center;
@@ -255,7 +263,6 @@
       min-height: 28px;
     }
 
-    /* Activity 2: Cracker Burst Arena */
     .burst-pad {
       position: relative;
       width: 100%;
@@ -284,7 +291,6 @@
       transform: scale(0.85);
     }
 
-    /* Activity 3: Rangoli Painter */
     .color-picker-palette {
       display: flex;
       justify-content: center;
@@ -328,7 +334,6 @@
       transform: scale(1.12);
     }
 
-    /* Shared Action Buttons */
     .action-btn {
       display: block;
       width: 100%;
@@ -351,7 +356,6 @@
       box-shadow: 0 4px 15px rgba(249, 211, 66, 0.4);
     }
 
-    /* Share Card */
     .share-card {
       background: var(--card-bg);
       border: 1px solid var(--gold-dark);
@@ -392,7 +396,6 @@
 
   <div class="container">
     
-    <!-- Hero Wishes Section -->
     <header class="header-card">
       <div class="shloka">॥ शुभं करोति कल्याणम् आरोग्यम् धनसंपदा ॥</div>
       <h1>Happy Diwali</h1>
@@ -401,21 +404,22 @@
       <div class="signature-badge">🪔 Greetings from Pratik 🪔</div>
 
       <p class="wish-text">
-        May the divine light of Deepavali radiate into your life with abundance, good health, and peace. Celebrate the joy by lighting diyas, bursting crackers, and creating colourful rangoli!
+        May the divine light of Deepavali radiate into your life with abundance, good health, and peace. Tap any option below to switch festive music themes and enjoy interactive games!
       </p>
+      
+      <div class="sound-status">🔊 Tap any button to start music & sound effects</div>
     </header>
 
-    <!-- Navigation Tabs -->
     <nav class="tab-bar">
       <button class="tab-btn active" id="tab-diyas-btn">🪔 Light Diyas</button>
       <button class="tab-btn" id="tab-crackers-btn">🎆 Crackers Pop</button>
       <button class="tab-btn" id="tab-rangoli-btn">🎨 Rangoli Art</button>
     </nav>
 
-    <!-- Activity 1: Light Diyas -->
+    <!-- Activity 1: Light Diyas (Sacred Bell & Tanpura Music) -->
     <section id="game-diyas" class="game-section active">
       <h2 class="game-title">Light All 5 Diyas</h2>
-      <p class="game-instruction">Tap on each unlit diya to kindle its sacred flame.</p>
+      <p class="game-instruction">Tap on each unlit diya to kindle its sacred flame and ring temple bells.</p>
       
       <div class="diyas-rack">
         <div class="diya-item">
@@ -444,10 +448,10 @@
       <button class="action-btn" id="resetDiyasBtn">Reset All Diyas</button>
     </section>
 
-    <!-- Activity 2: Cracker Popping -->
+    <!-- Activity 2: Cracker Popping (Explosion SFX & Rhythmic Beats) -->
     <section id="game-crackers" class="game-section">
       <h2 class="game-title">Pop the Flying Cracker</h2>
-      <p class="game-instruction">Tap the flying rocket before it jumps to another spot!</p>
+      <p class="game-instruction">Tap the flying rocket before it jumps to burst real firecracker sounds!</p>
       
       <div class="status-msg" id="scoreBoard">Cracker Score: 0</div>
       
@@ -456,10 +460,10 @@
       </div>
     </section>
 
-    <!-- Activity 3: Rangoli Art -->
+    <!-- Activity 3: Rangoli Art (Classical Sitar/Flute Theme) -->
     <section id="game-rangoli" class="game-section">
       <h2 class="game-title">Paint Your Rangoli</h2>
-      <p class="game-instruction">Choose your festive color swatch below and fill the mandala grid.</p>
+      <p class="game-instruction">Listen to the classical melodic theme while painting your rangoli pattern.</p>
       
       <div class="color-picker-palette">
         <div class="color-swatch active" data-color="#ff3366" style="background:#ff3366;"></div>
@@ -475,7 +479,6 @@
       <button class="action-btn" id="clearRangoliBtn">Clear Grid</button>
     </section>
 
-    <!-- Share WhatsApp Footer -->
     <footer class="share-card">
       <a id="shareWhatsapp" class="share-btn" target="_blank">
         Share Pratik's Wishes & Games on WhatsApp 🪔
@@ -485,7 +488,297 @@
   </div>
 
   <script>
-    // --- CANVAS PARTICLES & FIREWORKS ENGINE ---
+    // ==========================================
+    // WEB AUDIO SYNTHESIZER ENGINE (Zero External Audio Files)
+    // ==========================================
+    let audioCtx = null;
+    let bgInterval = null;
+    let currentTheme = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // 1. Diya Temple Bell SFX
+    function playTempleBellSound(frequency = 880) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1.8);
+    }
+
+    // 2. Realistic Firecracker Boom & Crackle SFX
+    function playCrackerExplosionSound() {
+      if (!audioCtx) return;
+      
+      // Low boom
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.35);
+      
+      oscGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+      
+      osc.connect(oscGain);
+      oscGain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.35);
+
+      // Noise crackle
+      const bufferSize = audioCtx.sampleRate * 0.45;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = 1100;
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(audioCtx.destination);
+
+      noise.start();
+      noise.stop(audioCtx.currentTime + 0.45);
+    }
+
+    // 3. Rangoli Soft Pluck Note SFX
+    function playPluckNote(freq) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.7);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.7);
+    }
+
+    // Dynamic Theme Music Loops
+    function startMusicTheme(theme) {
+      initAudio();
+      if (currentTheme === theme) return;
+      currentTheme = theme;
+      if (bgInterval) clearInterval(bgInterval);
+
+      if (theme === 'diyas') {
+        // Serene Tanpura / Chime Drone
+        let step = 0;
+        const notes = [440, 554.37, 659.25, 880];
+        bgInterval = setInterval(() => {
+          playPluckNote(notes[step % notes.length]);
+          step++;
+        }, 1100);
+      } else if (theme === 'crackers') {
+        // High-energy fast rhythm
+        let step = 0;
+        bgInterval = setInterval(() => {
+          if (step % 2 === 0) {
+            playPluckNote(180);
+          } else {
+            playPluckNote(260);
+          }
+          step++;
+        }, 320);
+      } else if (theme === 'rangoli') {
+        // Raag Bhairav / Classical melodic sequence
+        const ragaNotes = [261.63, 277.18, 329.63, 349.23, 392.00, 415.30, 493.88, 523.25];
+        let step = 0;
+        bgInterval = setInterval(() => {
+          playPluckNote(ragaNotes[step % ragaNotes.length]);
+          step = (step + 1) % ragaNotes.length;
+        }, 450);
+      }
+    }
+
+    // ==========================================
+    // TAB SWITCHING & SOUND ACTIVATION
+    // ==========================================
+    const tabDiyasBtn = document.getElementById('tab-diyas-btn');
+    const tabCrackersBtn = document.getElementById('tab-crackers-btn');
+    const tabRangoliBtn = document.getElementById('tab-rangoli-btn');
+
+    const gameDiyasSec = document.getElementById('game-diyas');
+    const gameCrackersSec = document.getElementById('game-crackers');
+    const gameRangoliSec = document.getElementById('game-rangoli');
+
+    function setActiveTab(btn, sec, theme) {
+      initAudio();
+      [tabDiyasBtn, tabCrackersBtn, tabRangoliBtn].forEach(b => b.classList.remove('active'));
+      [gameDiyasSec, gameCrackersSec, gameRangoliSec].forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      sec.classList.add('active');
+      startMusicTheme(theme);
+    }
+
+    tabDiyasBtn.addEventListener('click', () => setActiveTab(tabDiyasBtn, gameDiyasSec, 'diyas'));
+    tabCrackersBtn.addEventListener('click', () => {
+      setActiveTab(tabCrackersBtn, gameCrackersSec, 'crackers');
+      moveCracker();
+    });
+    tabRangoliBtn.addEventListener('click', () => setActiveTab(tabRangoliBtn, gameRangoliSec, 'rangoli'));
+
+    // ==========================================
+    // ACTIVITY 1: DIYAS LIGHTING
+    // ==========================================
+    const diyaItems = document.querySelectorAll('.diya-item');
+    const diyaCounter = document.getElementById('diyaCounter');
+    const resetDiyasBtn = document.getElementById('resetDiyasBtn');
+    let litDiyas = 0;
+    const bellPitches = [587.33, 659.25, 739.99, 880.00, 987.77];
+
+    diyaItems.forEach((diya, idx) => {
+      diya.addEventListener('click', () => {
+        initAudio();
+        if (!diya.classList.contains('lit')) {
+          diya.classList.add('lit');
+          litDiyas++;
+          diyaCounter.innerText = `Lit: ${litDiyas} / 5`;
+
+          playTempleBellSound(bellPitches[idx % bellPitches.length]);
+
+          const rect = diya.getBoundingClientRect();
+          createBurst(rect.left + rect.width / 2, rect.top + 8, ['#ffd32a', '#ff9f1a', '#ff3838']);
+
+          if (litDiyas === 5) {
+            triggerGrandFireworks();
+            playTempleBellSound(1174.66);
+            diyaCounter.innerText = "✨ All Diyas Lit! Happy Deepavali! ✨";
+          }
+        }
+      });
+    });
+
+    resetDiyasBtn.addEventListener('click', () => {
+      initAudio();
+      diyaItems.forEach(d => d.classList.remove('lit'));
+      litDiyas = 0;
+      diyaCounter.innerText = "Lit: 0 / 5";
+      playPluckNote(330);
+    });
+
+    // ==========================================
+    // ACTIVITY 2: CRACKER BURST GAME
+    // ==========================================
+    let score = 0;
+    const crackerSymbols = ['🚀', '✨', '🎇', '🧨', '🪔', '💥'];
+    const targetCracker = document.getElementById('targetCracker');
+    const burstArea = document.getElementById('burstArea');
+    const scoreBoard = document.getElementById('scoreBoard');
+
+    function moveCracker() {
+      const maxX = burstArea.clientWidth - 60;
+      const maxY = burstArea.clientHeight - 60;
+      const randX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randY = Math.max(10, Math.floor(Math.random() * maxY));
+      
+      targetCracker.style.left = `${randX}px`;
+      targetCracker.style.top = `${randY}px`;
+      targetCracker.style.transform = 'none';
+      targetCracker.innerText = crackerSymbols[Math.floor(Math.random() * crackerSymbols.length)];
+    }
+
+    targetCracker.addEventListener('click', (e) => {
+      initAudio();
+      score += 10;
+      scoreBoard.innerText = `Cracker Score: ${score}`;
+      
+      playCrackerExplosionSound();
+
+      const rect = e.target.getBoundingClientRect();
+      createBurst(rect.left + 25, rect.top + 25, ['#ff3838', '#ff9f1a', '#2ed573', '#1e90ff', '#ffffff']);
+      moveCracker();
+    });
+
+    setInterval(() => {
+      if (gameCrackersSec.classList.contains('active')) {
+        moveCracker();
+      }
+    }, 2400);
+
+    // ==========================================
+    // ACTIVITY 3: RANGOLI ART
+    // ==========================================
+    const rangoliGrid = document.getElementById('rangoliGrid');
+    const swatches = document.querySelectorAll('.color-swatch');
+    const clearRangoliBtn = document.getElementById('clearRangoliBtn');
+    let currentColor = '#ff3366';
+    const gridNotes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33];
+
+    swatches.forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        initAudio();
+        swatches.forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
+        currentColor = swatch.getAttribute('data-color');
+        playPluckNote(523.25);
+      });
+    });
+
+    for (let i = 0; i < 49; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'rangoli-dot';
+      dot.addEventListener('click', function() {
+        initAudio();
+        this.style.background = currentColor;
+        this.style.boxShadow = `0 0 10px ${currentColor}`;
+        playPluckNote(gridNotes[i % gridNotes.length]);
+      });
+      rangoliGrid.appendChild(dot);
+    }
+
+    clearRangoliBtn.addEventListener('click', () => {
+      initAudio();
+      document.querySelectorAll('.rangoli-dot').forEach(dot => {
+        dot.style.background = 'rgba(255, 255, 255, 0.1)';
+        dot.style.boxShadow = 'none';
+      });
+      playPluckNote(220);
+    });
+
+    // ==========================================
+    // SHARE LINK SETUP
+    // ==========================================
+    const shareUrl = window.location.href;
+    const shareMsg = `🪔 *Pratik* has sent you Diwali wishes with music & fun games! Play with sound here: ${shareUrl}`;
+    document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMsg)}`;
+
+    // ==========================================
+    // CANVAS FIREWORKS ENGINE
+    // ==========================================
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -561,129 +854,6 @@
       requestAnimationFrame(animateFireworks);
     }
     animateFireworks();
-
-    // --- TAB SWITCHER LOGIC ---
-    const tabDiyasBtn = document.getElementById('tab-diyas-btn');
-    const tabCrackersBtn = document.getElementById('tab-crackers-btn');
-    const tabRangoliBtn = document.getElementById('tab-rangoli-btn');
-
-    const gameDiyasSec = document.getElementById('game-diyas');
-    const gameCrackersSec = document.getElementById('game-crackers');
-    const gameRangoliSec = document.getElementById('game-rangoli');
-
-    function setActiveTab(btn, sec) {
-      [tabDiyasBtn, tabCrackersBtn, tabRangoliBtn].forEach(b => b.classList.remove('active'));
-      [gameDiyasSec, gameCrackersSec, gameRangoliSec].forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      sec.classList.add('active');
-    }
-
-    tabDiyasBtn.addEventListener('click', () => setActiveTab(tabDiyasBtn, gameDiyasSec));
-    tabCrackersBtn.addEventListener('click', () => {
-      setActiveTab(tabCrackersBtn, gameCrackersSec);
-      moveCracker();
-    });
-    tabRangoliBtn.addEventListener('click', () => setActiveTab(tabRangoliBtn, gameRangoliSec));
-
-    // --- ACTIVITY 1: DIYAS LIGHTING ---
-    const diyaItems = document.querySelectorAll('.diya-item');
-    const diyaCounter = document.getElementById('diyaCounter');
-    const resetDiyasBtn = document.getElementById('resetDiyasBtn');
-    let litDiyas = 0;
-
-    diyaItems.forEach(diya => {
-      diya.addEventListener('click', () => {
-        if (!diya.classList.contains('lit')) {
-          diya.classList.add('lit');
-          litDiyas++;
-          diyaCounter.innerText = `Lit: ${litDiyas} / 5`;
-
-          const rect = diya.getBoundingClientRect();
-          createBurst(rect.left + rect.width / 2, rect.top + 8, ['#ffd32a', '#ff9f1a', '#ff3838']);
-
-          if (litDiyas === 5) {
-            triggerGrandFireworks();
-            diyaCounter.innerText = "✨ All Diyas Lit! Happy Deepavali! ✨";
-          }
-        }
-      });
-    });
-
-    resetDiyasBtn.addEventListener('click', () => {
-      diyaItems.forEach(d => d.classList.remove('lit'));
-      litDiyas = 0;
-      diyaCounter.innerText = "Lit: 0 / 5";
-    });
-
-    // --- ACTIVITY 2: CRACKER BURST GAME ---
-    let score = 0;
-    const crackerSymbols = ['🚀', '✨', '🎇', '🧨', '🪔', '💥'];
-    const targetCracker = document.getElementById('targetCracker');
-    const burstArea = document.getElementById('burstArea');
-    const scoreBoard = document.getElementById('scoreBoard');
-
-    function moveCracker() {
-      const maxX = burstArea.clientWidth - 60;
-      const maxY = burstArea.clientHeight - 60;
-      const randX = Math.max(10, Math.floor(Math.random() * maxX));
-      const randY = Math.max(10, Math.floor(Math.random() * maxY));
-      
-      targetCracker.style.left = `${randX}px`;
-      targetCracker.style.top = `${randY}px`;
-      targetCracker.style.transform = 'none';
-      targetCracker.innerText = crackerSymbols[Math.floor(Math.random() * crackerSymbols.length)];
-    }
-
-    targetCracker.addEventListener('click', (e) => {
-      score += 10;
-      scoreBoard.innerText = `Cracker Score: ${score}`;
-      
-      const rect = e.target.getBoundingClientRect();
-      createBurst(rect.left + 25, rect.top + 25, ['#ff3838', '#ff9f1a', '#2ed573', '#1e90ff', '#ffffff']);
-      moveCracker();
-    });
-
-    setInterval(() => {
-      if (gameCrackersSec.classList.contains('active')) {
-        moveCracker();
-      }
-    }, 2400);
-
-    // --- ACTIVITY 3: RANGOLI ART ---
-    const rangoliGrid = document.getElementById('rangoliGrid');
-    const swatches = document.querySelectorAll('.color-swatch');
-    const clearRangoliBtn = document.getElementById('clearRangoliBtn');
-    let currentColor = '#ff3366';
-
-    swatches.forEach(swatch => {
-      swatch.addEventListener('click', () => {
-        swatches.forEach(s => s.classList.remove('active'));
-        swatch.classList.add('active');
-        currentColor = swatch.getAttribute('data-color');
-      });
-    });
-
-    for (let i = 0; i < 49; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'rangoli-dot';
-      dot.addEventListener('click', function() {
-        this.style.background = currentColor;
-        this.style.boxShadow = `0 0 10px ${currentColor}`;
-      });
-      rangoliGrid.appendChild(dot);
-    }
-
-    clearRangoliBtn.addEventListener('click', () => {
-      document.querySelectorAll('.rangoli-dot').forEach(dot => {
-        dot.style.background = 'rgba(255, 255, 255, 0.1)';
-        dot.style.boxShadow = 'none';
-      });
-    });
-
-    // --- SHARE LINK SETUP ---
-    const shareUrl = window.location.href;
-    const shareMsg = `🪔 *Pratik* has sent you Diwali wishes with interactive games! Light diyas, pop fireworks, and paint rangoli here: ${shareUrl}`;
-    document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMsg)}`;
   </script>
 </body>
 </html>
