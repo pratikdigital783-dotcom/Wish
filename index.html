@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Diwali Wishes</title>
+  <title>Happy Diwali | Festive Celebration & Mini-Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --gold: #f9d342;
-      --deep-gold: #c59b27;
-      --maroon: #2b080c;
-      --dark-crimson: #160305;
-      --card-bg: rgba(30, 4, 8, 0.85);
+      --gold-dark: #c59b27;
+      --deep-crimson: #1a0307;
+      --maroon: #380710;
+      --card-bg: rgba(28, 5, 11, 0.88);
+      --accent-orange: #ff6b35;
+      --accent-green: #25d366;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at center, var(--maroon) 0%, var(--dark-crimson) 100%);
+      background: radial-gradient(circle at 50% 20%, #4a0c17 0%, var(--deep-crimson) 100%);
       font-family: 'Poppins', sans-serif;
       color: #fff;
       overflow-x: hidden;
-      padding: 16px;
+      padding: 20px 14px 60px 14px;
       position: relative;
     }
 
@@ -46,163 +46,336 @@
       z-index: 1;
     }
 
-    .card {
+    .container {
       position: relative;
       z-index: 2;
-      width: 100%;
-      max-width: 520px;
-      background: var(--card-bg);
-      border: 2px solid var(--deep-gold);
-      border-radius: 20px;
-      padding: 36px 24px;
-      text-align: center;
-      box-shadow: 0 0 35px rgba(249, 211, 66, 0.25), inset 0 0 20px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .card::before {
+    /* Classical Header Section */
+    .header-card {
+      background: var(--card-bg);
+      border: 2px solid var(--gold-dark);
+      border-radius: 20px;
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(249, 211, 66, 0.25);
+      position: relative;
+    }
+
+    .header-card::before {
       content: "";
       position: absolute;
       top: 8px;
       left: 8px;
       right: 8px;
       bottom: 8px;
-      border: 1px dashed rgba(249, 211, 66, 0.4);
+      border: 1px dashed rgba(249, 211, 66, 0.35);
       border-radius: 14px;
       pointer-events: none;
     }
 
     .shloka {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--gold);
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-      font-weight: 300;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      font-weight: 400;
     }
 
     h1 {
       font-family: 'Cinzel Decorative', cursive;
-      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-size: clamp(2rem, 7vw, 3rem);
       color: var(--gold);
-      text-shadow: 0 0 15px rgba(249, 211, 66, 0.6);
-      margin-bottom: 8px;
+      text-shadow: 0 0 16px rgba(249, 211, 66, 0.7);
+      margin-bottom: 4px;
       line-height: 1.2;
     }
 
     .subtitle {
       font-size: 1.05rem;
       color: #fce8a6;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
-    /* Traditional Diya Styling */
-    .diya-container {
-      position: relative;
-      width: 120px;
-      height: 90px;
-      margin: 0 auto 20px auto;
+    .signature-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(249, 211, 66, 0.15);
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 16px;
+      text-shadow: 0 0 10px rgba(249, 211, 66, 0.4);
     }
 
-    .flame {
-      position: absolute;
-      top: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 22px;
-      height: 38px;
+    .wish-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #f7ede2;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Interactive Tab Bar */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      background: rgba(30, 4, 8, 0.9);
+      border: 1px solid var(--gold-dark);
+      border-radius: 12px;
+      color: #fce8a6;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+      color: #200407;
+      box-shadow: 0 0 15px rgba(249, 211, 66, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Game Cards */
+    .game-section {
+      background: var(--card-bg);
+      border: 2px solid var(--gold-dark);
+      border-radius: 20px;
+      padding: 26px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .game-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .game-title {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 1.5rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .game-instruction {
+      font-size: 0.9rem;
+      color: #d1b48c;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Game 1: Light the 5 Diyas */
+    .diyas-rack {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .diya-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      width: 70px;
+      transition: transform 0.2s;
+    }
+
+    .diya-item:hover {
+      transform: scale(1.08);
+    }
+
+    .diya-flame {
+      width: 16px;
+      height: 28px;
       background: linear-gradient(to bottom, #ffffff 0%, #ffe600 40%, #ff5e00 85%);
       border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-      box-shadow: 0 0 20px #ff9900, 0 0 40px #ff4500;
-      animation: flicker 1.2s infinite ease-in-out alternate;
+      margin-bottom: -4px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       transform-origin: bottom center;
     }
 
-    @keyframes flicker {
-      0% { transform: translateX(-50%) scale(1) rotate(-1deg); opacity: 0.95; }
-      50% { transform: translateX(-50%) scale(1.08) rotate(1deg); opacity: 1; }
-      100% { transform: translateX(-50%) scale(0.96) rotate(-2deg); opacity: 0.9; }
+    .diya-item.lit .diya-flame {
+      opacity: 1;
+      animation: flameWobble 1.2s infinite ease-in-out alternate;
+      box-shadow: 0 0 16px #ff9900, 0 0 32px #ff4500;
     }
 
-    .diya-base {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 42px;
+    @keyframes flameWobble {
+      0% { transform: scale(1) rotate(-2deg); }
+      50% { transform: scale(1.1) rotate(2deg); }
+      100% { transform: scale(0.95) rotate(-1deg); }
+    }
+
+    .diya-dish {
+      width: 60px;
+      height: 26px;
       background: linear-gradient(to bottom, #d47a28, #7a3a08);
-      border-radius: 0 0 100px 100px;
-      box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.6), 0 6px 12px rgba(0, 0, 0, 0.5);
+      border-radius: 0 0 60px 60px;
       border-top: 3px solid #ffaa42;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .wish-message {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #f7ede2;
-      margin-bottom: 24px;
-      padding: 0 8px;
-    }
-
-    .sender-tag {
-      font-size: 1.15rem;
+    .counter-display {
+      text-align: center;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    /* Form & Buttons */
-    .input-box {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--deep-gold);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 0.95rem;
       margin-bottom: 12px;
-      text-align: center;
-      outline: none;
     }
 
-    .input-box::placeholder {
-      color: #c9af75;
-    }
-
-    .input-box:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 10px rgba(249, 211, 66, 0.4);
-    }
-
-    .btn {
-      display: inline-block;
+    /* Game 2: Firecracker Popper */
+    .burst-pad {
+      position: relative;
       width: 100%;
-      padding: 12px 20px;
-      background: linear-gradient(45deg, #c59b27, #f9d342);
-      border: none;
-      border-radius: 8px;
-      color: #2b080c;
-      font-size: 1rem;
-      font-weight: 600;
+      height: 260px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px dashed var(--gold-dark);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: crosshair;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cracker-target {
+      position: absolute;
+      font-size: 2.2rem;
+      user-select: none;
       cursor: pointer;
-      text-decoration: none;
+      animation: floatCracker 0.9s infinite alternate ease-in-out;
+      transition: transform 0.15s;
+    }
+
+    @keyframes floatCracker {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-8px) rotate(6deg); }
+    }
+
+    /* Game 3: Rangoli Painter */
+    .rangoli-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      max-width: 320px;
+      margin: 0 auto 18px auto;
+    }
+
+    .rangoli-dot {
+      aspect-ratio: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(249, 211, 66, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .rangoli-dot:hover {
+      transform: scale(1.15);
+    }
+
+    .color-picker-palette {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .color-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #fff;
+      transition: transform 0.2s;
+    }
+
+    .color-swatch.active {
+      transform: scale(1.25);
+      box-shadow: 0 0 12px #fff;
+    }
+
+    /* Shared Action Buttons */
+    .action-btn {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+      border: none;
+      border-radius: 10px;
+      color: #2b080c;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn:hover {
+    .action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(249, 211, 66, 0.4);
+      box-shadow: 0 4px 15px rgba(249, 211, 66, 0.4);
     }
 
-    .btn-share {
-      background: #25D366;
+    /* Share Footer */
+    .share-card {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-dark);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 340px;
+      padding: 12px 20px;
+      background: #25d366;
+      border: none;
+      border-radius: 12px;
       color: #fff;
-      margin-top: 10px;
-      display: none;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: inherit;
     }
 
-    .btn-share:hover {
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
     }
   </style>
 </head>
@@ -210,58 +383,179 @@
 
   <canvas id="fireworks"></canvas>
 
-  <div class="card">
-    <div class="shloka">॥ तमसो मा ज्योतिर्गमय ॥</div>
-    <h1>Happy Diwali</h1>
-    <div class="subtitle">Festival of Lights & Prosperity</div>
+  <div class="container">
+    
+    <!-- Hero Wishes Section -->
+    <header class="header-card">
+      <div class="shloka">॥ शुभं करोति कल्याणम् आरोग्यम् धनसंपदा ॥</div>
+      <h1>Happy Diwali</h1>
+      <div class="subtitle">Festival of Lights, Harmony & Triumph</div>
+      
+      <div class="signature-badge">🪔 Greetings from Pratik 🪔</div>
 
-    <div class="diya-container">
-      <div class="flame"></div>
-      <div class="diya-base"></div>
+      <p class="wish-text">
+        May the auspicious festival of lights usher in boundless prosperity, health, and limitless happiness for you and your family. Enjoy these interactive festivities and burst your worries away!
+      </p>
+    </header>
+
+    <!-- Activity Switcher -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="switchGame('diyas')">🪔 Light Diyas</button>
+      <button class="tab-btn" onclick="switchGame('crackers')">🎆 Crackers Pop</button>
+      <button class="tab-btn" onclick="switchGame('rangoli')">🎨 Rangoli Art</button>
+    </nav>
+
+    <!-- Activity 1: Light All Diyas -->
+    <section id="game-diyas" class="game-section active">
+      <h2 class="game-title">Light All 5 Diyas</h2>
+      <p class="game-instruction">Tap on each unlit diya to kindle its sacred flame and illuminate the room.</p>
+      
+      <div class="diyas-rack">
+        <div class="diya-item" onclick="lightDiya(this)">
+          <div class="diya-flame"></div>
+          <div class="diya-dish"></div>
+        </div>
+        <div class="diya-item" onclick="lightDiya(this)">
+          <div class="diya-flame"></div>
+          <div class="diya-dish"></div>
+        </div>
+        <div class="diya-item" onclick="lightDiya(this)">
+          <div class="diya-flame"></div>
+          <div class="diya-dish"></div>
+        </div>
+        <div class="diya-item" onclick="lightDiya(this)">
+          <div class="diya-flame"></div>
+          <div class="diya-dish"></div>
+        </div>
+        <div class="diya-item" onclick="lightDiya(this)">
+          <div class="diya-flame"></div>
+          <div class="diya-dish"></div>
+        </div>
+      </div>
+
+      <div class="counter-display" id="diyaCounter">Lit: 0 / 5</div>
+      <button class="action-btn" onclick="resetDiyas()">Reset Diyas</button>
+    </section>
+
+    <!-- Activity 2: Cracker Burst Game -->
+    <section id="game-crackers" class="game-section">
+      <h2 class="game-title">Pop the Fireworks</h2>
+      <p class="game-instruction">Tap the flying rockets and sparklers before they vanish! Each hit lights up fireworks in the sky.</p>
+      
+      <div class="counter-display" id="scoreBoard">Cracker Score: 0</div>
+      
+      <div class="burst-pad" id="burstArea">
+        <div id="targetCracker" class="cracker-target" onclick="popCracker(event)">🚀</div>
+      </div>
+    </section>
+
+    <!-- Activity 3: Interactive Rangoli -->
+    <section id="game-rangoli" class="game-section">
+      <h2 class="game-title">Create Your Rangoli</h2>
+      <p class="game-instruction">Pick a vibrant festive pigment and click the patterns to paint your Rangoli mandala.</p>
+      
+      <div class="color-picker-palette">
+        <div class="color-swatch active" style="background:#ff3366;" onclick="selectColor('#ff3366', this)"></div>
+        <div class="color-swatch" style="background:#f9d342;" onclick="selectColor('#f9d342', this)"></div>
+        <div class="color-swatch" style="background:#00d2d3;" onclick="selectColor('#00d2d3', this)"></div>
+        <div class="color-swatch" style="background:#10ac84;" onclick="selectColor('#10ac84', this)"></div>
+        <div class="color-swatch" style="background:#ff9f43;" onclick="selectColor('#ff9f43', this)"></div>
+        <div class="color-swatch" style="background:#ffffff;" onclick="selectColor('#ffffff', this)"></div>
+      </div>
+
+      <div class="rangoli-grid" id="rangoliGrid"></div>
+      
+      <button class="action-btn" onclick="clearRangoli()">Clear Rangoli</button>
+    </section>
+
+    <!-- Share Card -->
+    <div class="share-card">
+      <a id="shareWhatsapp" class="share-btn" target="_blank">
+        Share Pratik's Wishes & Games on WhatsApp 🪔
+      </a>
     </div>
 
-    <div id="senderDisplay" class="sender-tag"></div>
-
-    <p class="wish-message">
-      May the divine glow of diyas illuminate your life with endless peace, health, wealth, and eternal joy. Wishing you and your loved ones a blessed Deepavali!
-    </p>
-
-    <!-- Custom Wish Generation -->
-    <input type="text" id="nameInput" class="input-box" placeholder="Enter your name to wish others" maxlength="30">
-    <button class="btn" onclick="generateWish()">Create My Personalized Wish</button>
-    <a id="shareBtn" class="btn btn-share" target="_blank">Share on WhatsApp 🪔</a>
   </div>
 
   <script>
-    // 1. Read sender name from URL parameter
-    const params = new URLSearchParams(window.location.search);
-    const sender = params.get('from');
-    const senderDisplay = document.getElementById('senderDisplay');
+    // Tab Switching Logic
+    function switchGame(type) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.game-section').forEach(sec => sec.classList.remove('active'));
 
-    if (sender) {
-      senderDisplay.innerText = `— Warm Wishes From ${decodeURIComponent(sender)} —`;
-    }
-
-    // 2. Generate shareable custom link
-    function generateWish() {
-      const name = document.getElementById('nameInput').value.trim();
-      if (!name) {
-        alert('Please enter your name first!');
-        return;
+      if (type === 'diyas') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('game-diyas').classList.add('active');
+      } else if (type === 'crackers') {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('game-crackers').classList.add('active');
+        moveCracker();
+      } else if (type === 'rangoli') {
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        document.getElementById('game-rangoli').classList.add('active');
       }
-
-      const shareUrl = `${window.location.origin}${window.location.pathname}?from=${encodeURIComponent(name)}`; const message = `🪔 *${name}* has sent you a classical Diwali wish! Open the diya here: ${shareUrl}`; const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-
-      const shareBtn = document.getElementById('shareBtn');
-      shareBtn.href = whatsappUrl;
-      shareBtn.style.display = 'block';
-      shareBtn.innerText = `Share on WhatsApp as ${name} 🪔`;
-      
-      // Update local card immediately
-      senderDisplay.innerText = `— Warm Wishes From ${name} —`;
     }
 
-    // 3. Background Sparkles & Firecracker Animation
+    // Activity 1: Diyas Lighting
+    let litCount = 0;
+    function lightDiya(el) {
+      if (!el.classList.contains('lit')) {
+        el.classList.add('lit');
+        litCount++;
+        document.getElementById('diyaCounter').innerText = `Lit: ${litCount} / 5`;
+        
+        // Spawn burst on lighting
+        const rect = el.getBoundingClientRect();
+        createBurst(rect.left + rect.width / 2, rect.top + 10, ['#ffd32a', '#ff9f1a', '#ff3838']);
+
+        if (litCount === 5) {
+          triggerGrandFireworks();
+          document.getElementById('diyaCounter').innerText = `✨ All Diyas Lit! Happy Deepavali! ✨`;
+        }
+      }
+    }
+
+    function resetDiyas() {
+      document.querySelectorAll('.diya-item').forEach(d => d.classList.remove('lit'));
+      litCount = 0;
+      document.getElementById('diyaCounter').innerText = `Lit: 0 / 5`;
+    }
+
+    // Activity 2: Cracker Popping
+    let score = 0;
+    const crackers = ['🚀', '✨', '🎇', '🧨', '🪔', '💥'];
+    const target = document.getElementById('targetCracker');
+    const burstArea = document.getElementById('burstArea');
+
+    function moveCracker() {
+      const maxX = burstArea.clientWidth - 50;
+      const maxY = burstArea.clientHeight - 50;
+      const randX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randY = Math.max(10, Math.floor(Math.random() * maxY));
+      
+      target.style.left = `${randX}px`; target.style.top = `${randY}px`;
+      target.innerText = crackers[Math.floor(Math.random() * crackers.length)];
+    }
+
+    function popCracker(e) {
+      score += 10;
+      document.getElementById('scoreBoard').innerText = `Cracker Score: ${score}`;  const rect = e.target.getBoundingClientRect(); createBurst(rect.left + 20, rect.top + 20, ['#ff3838', '#ff9f1a', '#2ed573', '#1e90ff', '#ffffff']); moveCracker(); }  setInterval(() => { if (document.getElementById('game-crackers').classList.contains('active')) { moveCracker(); } }, 2200);  // Activity 3: Rangoli Painter const rangoliGrid = document.getElementById('rangoliGrid'); let currentColor = '#ff3366';  function selectColor(color, swatchEl) { currentColor = color; document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active')); swatchEl.classList.add('active'); }  for (let i = 0; i < 49; i++) { const dot = document.createElement('div'); dot.className = 'rangoli-dot'; dot.addEventListener('click', function() { this.style.background = currentColor; this.style.boxShadow = `0 0 10px ${currentColor}`;
+      });
+      rangoliGrid.appendChild(dot);
+    }
+
+    function clearRangoli() {
+      document.querySelectorAll('.rangoli-dot').forEach(dot => {
+        dot.style.background = 'rgba(255, 255, 255, 0.08)';
+        dot.style.boxShadow = 'none';
+      });
+    }
+
+    // Dynamic WhatsApp Share Link
+    const currentUrl = window.location.href;
+    const shareMessage = `🪔 *Pratik* has sent you auspicious Diwali wishes with fun mini-games to play! Light diyas and burst crackers here: ${currentUrl}`; document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+
+    // Fireworks Canvas Animation Engine
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -273,12 +567,12 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    function createParticle(x, y) {
-      const count = 25;
-      const colors = ['#f9d342', '#ff9900', '#ff4500', '#ffffff', '#ffeb99'];
+    function createBurst(x, y, palette) {
+      const count = 35;
+      const colors = palette || ['#f9d342', '#ff6b35', '#ff3838', '#00d2d3', '#ffffff'];
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 3 + 1;
+        const speed = Math.random() * 4.5 + 1.5;
         particles.push({
           x: x,
           y: y,
@@ -287,18 +581,29 @@
           alpha: 1,
           decay: Math.random() * 0.02 + 0.015,
           color: colors[Math.floor(Math.random() * colors.length)],
-          size: Math.random() * 2 + 1
+          size: Math.random() * 2.5 + 1.2
         });
       }
     }
 
-    function animate() {
+    function triggerGrandFireworks() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createBurst(
+            Math.random() * window.innerWidth,
+            Math.random() * (window.innerHeight * 0.5) + 50
+          );
+        }, i * 250);
+      }
+    }
+
+    function animateFireworks() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (Math.random() < 0.04) {
-        createParticle(
+      if (Math.random() < 0.035) {
+        createBurst(
           Math.random() * canvas.width,
-          Math.random() * (canvas.height * 0.6)
+          Math.random() * (canvas.height * 0.5) + 30
         );
       }
 
@@ -306,7 +611,7 @@
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.03; // gravity
+        p.vy += 0.04;
         p.alpha -= p.decay;
 
         if (p.alpha <= 0) {
@@ -323,9 +628,9 @@
         ctx.restore();
       }
 
-      requestAnimationFrame(animate);
+      requestAnimationFrame(animateFireworks);
     }
-    animate();
+    animateFireworks();
   </script>
 </body>
 </html>
